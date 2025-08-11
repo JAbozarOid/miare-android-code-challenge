@@ -1,0 +1,31 @@
+plugins {
+    id 'com.android.library'
+    id 'org.jetbrains.kotlin.android'
+    id 'com.google.devtools.ksp'
+}
+
+android {
+    namespace 'ir.miare.androidcodechallenge'
+    compileSdk 33
+
+    defaultConfig {
+        minSdk 21
+    }
+
+}
+
+dependencies {
+
+    implementation project(":domain")
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.okhttp3:okhttp:4.10.0"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.14.+"
+    implementation "com.squareup.retrofit2:converter-jackson:2.9.0"
+    implementation "androidx.room:room-runtime:2.5.2"
+    ksp 'androidx.room:room-compiler:2.6.0'
+    implementation "androidx.room:room-ktx:2.5.2"
+    implementation "androidx.paging:paging-runtime-ktx:3.2.0"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.3"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
+}
