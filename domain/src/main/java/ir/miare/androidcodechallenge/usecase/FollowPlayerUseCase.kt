@@ -1,0 +1,13 @@
+package ir.miare.androidcodechallenge.usecase
+
+import ir.miare.androidcodechallenge.repository.PlayerRepository
+
+class FollowPlayerUseCase(private val repo: PlayerRepository) {
+    suspend fun follow(playerId : String) {
+        repo.followPlayer(playerId)
+    }
+
+    suspend fun unfollow(playerId: String) {
+        repo.unfollowPlayer(playerId)
+    }
+}
