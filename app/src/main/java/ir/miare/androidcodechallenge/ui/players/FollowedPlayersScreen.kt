@@ -10,12 +10,12 @@ import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.hilt.navigation.compose.hiltViewModel
 import ir.miare.androidcodechallenge.viewmodel.PlayersViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun FollowedPlayersScreen(viewModel: PlayersViewModel = hiltViewModel()) {
+fun FollowedPlayersScreen(viewModel: PlayersViewModel) {
+
     val followedFlow = viewModel.followedPlayersFlow()
     val followedPlayers by followedFlow.collectAsState(initial = emptyList())
 

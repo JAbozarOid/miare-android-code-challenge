@@ -1,6 +1,5 @@
 package ir.miare.androidcodechallenge.ui.players
 
-import android.R.attr.padding
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -23,7 +22,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
 import androidx.paging.compose.collectAsLazyPagingItems
@@ -34,14 +32,16 @@ import ir.miare.androidcodechallenge.viewmodel.PlayersViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PlayersScreen(
-    viewModel: PlayersViewModel = hiltViewModel(),
     sortBy: String = "goals",
     ascending: Boolean = false,
-    onOpenFollowed: () -> Unit = {}
+    onOpenFollowed: () -> Unit = {},
+    viewModel: PlayersViewModel
 ) {
+
     val pagerFlow = remember { viewModel.playersPager(sortBy, ascending) }
     val lazyPagingItems = pagerFlow.collectAsLazyPagingItems()
     val followedIds by viewModel.followedIds.collectAsState()
+
 
     Scaffold(
         topBar = {
@@ -76,38 +76,39 @@ fun PlayersList(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(vertical = 8.dp)
         ) {
-           /* items(lazyPagingItems) { player ->
-                PlayerItem(
-                    player = player,
-                    isFollowed = followedIds.contains(player.id),
-                    onToggleFollow = { onToggleFollow }
-                )
-            }*/
+            items(lazyPagingItems.itemCount) { index ->
+                val player = lazyPagingItems[index]
+                if (player != null) {
+                    PlayerItem(
+                        player = player,
+                        isFollowed = followedIds.contains(player.id),
+                        onToggleFollow = { onToggleFollow(player) }
+                    )
+                }
+            }
 
-            // Loading footer
-            lazyPagingItems.apply {
-                when {
-                    loadState.append is LoadState.Loading -> {
-                        item {
-                            Box(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(16.dp), contentAlignment = Alignment.Center) {
-                                CircularProgressIndicator()
-                            }
-                        }
-                    }
-                    loadState.refresh is LoadState.Loading -> {
-                        // show initial loading
-                        item {
-                            Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                                CircularProgressIndicator()
-                            }
-                        }
+            if (lazyPagingItems.loadState.append is LoadState.Loading) {
+                item {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(16.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        CircularProgressIndicator()
                     }
                 }
             }
         }
-    }
 
+        if (lazyPagingItems.loadState.refresh is LoadState.Loading) {
+            Box(
+                modifier = Modifier.fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                CircularProgressIndicator()
+            }
+        }
+    }
 }
+

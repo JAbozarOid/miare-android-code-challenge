@@ -50,4 +50,15 @@ dependencies {
     implementation(libs.coil.kt)
     implementation(libs.paging.runtime)
     implementation(libs.paging.compose)
+
+    // Room
+    implementation "androidx.room:room-runtime:2.5.2"
+    ksp 'androidx.room:room-compiler:2.6.0'
+    implementation "androidx.room:room-ktx:2.5.2"
+
+    implementation "com.squareup.retrofit2:retrofit:2.9.0"
+    implementation "com.squareup.retrofit2:converter-jackson:2.9.0"
+    implementation "com.fasterxml.jackson.module:jackson-module-kotlin:2.15.2"
+    implementation "androidx.annotation:annotation-experimental:1.4.0"
+
 }

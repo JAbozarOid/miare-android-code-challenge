@@ -4,7 +4,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
-import dagger.hilt.android.lifecycle.HiltViewModel
 import ir.miare.androidcodechallenge.model.Player
 import ir.miare.androidcodechallenge.usecase.FollowPlayerUseCase
 import ir.miare.androidcodechallenge.usecase.GetFollowedPlayersUseCase
@@ -14,10 +13,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.launch
-import javax.inject.Inject
 
-@HiltViewModel
-class PlayersViewModel @Inject constructor(
+class PlayersViewModel (
     private val getPlayersPagerUseCase: GetPlayersPagerUseCase,
     private val followPlayerUseCase: FollowPlayerUseCase,
     private val getFollowedPlayersUseCase: GetFollowedPlayersUseCase
