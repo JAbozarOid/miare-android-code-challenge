@@ -4,11 +4,16 @@ import PlayersViewModelFactory
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModelProvider
 import androidx.room.Room
 import ir.miare.androidcodechallenge.local.AppDatabase
 import ir.miare.androidcodechallenge.remote.PlayerApi
 import ir.miare.androidcodechallenge.repository.PlayerRepositoryImpl
+import ir.miare.androidcodechallenge.ui.followed.FollowedPlayersScreen
 import ir.miare.androidcodechallenge.ui.players.PlayersScreen
 import ir.miare.androidcodechallenge.usecase.FollowPlayerUseCase
 import ir.miare.androidcodechallenge.usecase.GetFollowedPlayersUseCase
@@ -67,15 +72,27 @@ class MainActivity : AppCompatActivity() {
         val followPlayerUseCase = FollowPlayerUseCase(repo)
         val getFollowedPlayersUseCase = GetFollowedPlayersUseCase(repo)
 
-        // Use a ViewModelProvider.Factory to inject these manually
         val viewModel = ViewModelProvider(
             this,
-            PlayersViewModelFactory(getPlayersPagerUseCase, followPlayerUseCase, getFollowedPlayersUseCase)
+            PlayersViewModelFactory(
+                getPlayersPagerUseCase,
+                followPlayerUseCase,
+                getFollowedPlayersUseCase
+            )
         )[PlayersViewModel::class.java]
 
 
         setContent {
-            PlayersScreen(viewModel = viewModel)
+            var showFollowed by remember { mutableStateOf(false) }
+
+            if (showFollowed) {
+                FollowedPlayersScreen(viewModel = viewModel, onBack = { showFollowed = false })
+            } else {
+                PlayersScreen(
+                    viewModel = viewModel,
+                    onOpenFollowed = { showFollowed = true }
+                )
+            }
         }
     }
 }

@@ -16,8 +16,6 @@ import retrofit2.converter.jackson.JacksonConverterFactory
 import java.util.concurrent.TimeUnit
 
 class MyApp : Application() {
-
-    // Safe app-wide scope
     private val appScope by lazy { CoroutineScope(SupervisorJob() + Dispatchers.IO) }
 
     lateinit var repo: PlayerRepository
@@ -26,7 +24,6 @@ class MyApp : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // Build dependencies manually
         val db = Room.databaseBuilder(
             applicationContext,
             AppDatabase::class.java,
@@ -62,7 +59,6 @@ class MyApp : Application() {
         val api = retrofit.create(PlayerApi::class.java)
         repo = PlayerRepositoryImpl(api, db)
 
-        // Seed DB in background
         appScope.launch {
             runCatching {
                 val json = assets.open("data.json").bufferedReader().use { it.readText() }
