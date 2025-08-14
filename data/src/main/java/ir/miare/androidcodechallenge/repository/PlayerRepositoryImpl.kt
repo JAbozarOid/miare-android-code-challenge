@@ -13,6 +13,8 @@ import ir.miare.androidcodechallenge.local.PlayerDao
 import ir.miare.androidcodechallenge.local.PlayerEntity
 import ir.miare.androidcodechallenge.mapper.toDomain
 import ir.miare.androidcodechallenge.mapper.toPlayerEntity
+import ir.miare.androidcodechallenge.model.League
+import ir.miare.androidcodechallenge.model.LeagueWithPlayers
 import ir.miare.androidcodechallenge.model.Player
 import ir.miare.androidcodechallenge.remote.FakeData
 import ir.miare.androidcodechallenge.remote.PlayerApi
@@ -36,7 +38,7 @@ class PlayerRepositoryImpl(
         val sql = buildPagingSql(sortBy, ascending)
         val query = SimpleSQLiteQuery(sql)
         val pager = Pager(
-            config = PagingConfig(pageSize = 10, enablePlaceholders = false),
+            config = PagingConfig(pageSize = 5, enablePlaceholders = false),
             pagingSourceFactory = { dao.playersPagingSource(query) }
         )
         return pager.flow.map { pagingData -> pagingData.map { it.toDomain() } }
@@ -73,6 +75,30 @@ class PlayerRepositoryImpl(
 
     override fun getFollowedPlayers(): Flow<List<Player>> {
         return dao.getFollowedPlayers().map { list -> list.map { it.toDomain() } }
+    }
+
+    override fun getAllLeaguesWithPlayers(): Flow<List<LeagueWithPlayers>> {
+        return dao.getAllPlayers()
+            .map { players ->
+                players
+                    .groupBy { Pair(it.leagueName, it.leagueCountry) }
+                    .map { (leagueInfo, playerEntities) ->
+                        val leagueName = leagueInfo.first
+                        val leagueCountry = leagueInfo.second
+                        val totalMatches = playerEntities.firstOrNull()?.totalMatches ?: 0
+                        val leagueRank = playerEntities.firstOrNull()?.leagueRank ?: 0
+
+                        LeagueWithPlayers(
+                            league = League(
+                                name = leagueName,
+                                country = leagueCountry,
+                                rank = leagueRank,
+                                totalMatches = totalMatches
+                            ),
+                            players = playerEntities.map { it.toDomain() }
+                        )
+                    }
+            }
     }
 
     private fun buildPagingSql(sortBy: String, asc: Boolean): String {

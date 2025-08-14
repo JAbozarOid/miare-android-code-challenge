@@ -41,6 +41,12 @@ fun PlayerItem(
                     Text(if (isFollowed) "Following" else "Follow")
                 }
             }
+
+           /* Column {
+                Text(player.name, style = MaterialTheme.typography.titleMedium)
+                Text("${player.teamName} - Goals: ${player.totalGoal}", style = MaterialTheme.typography.bodyMedium)
+            }
+            Text("Rank: ${player.teamRank}", style = MaterialTheme.typography.bodySmall)*/
         }
     }
 }

@@ -2,6 +2,7 @@ package ir.miare.androidcodechallenge.mapper
 
 import ir.miare.androidcodechallenge.local.PlayerEntity
 import ir.miare.androidcodechallenge.model.Player
+import ir.miare.androidcodechallenge.model.Team
 import ir.miare.androidcodechallenge.remote.PlayerDto
 
 fun PlayerDto.toPlayerEntity(leagueName: String, leagueCountry: String): PlayerEntity {
@@ -13,7 +14,9 @@ fun PlayerDto.toPlayerEntity(leagueName: String, leagueCountry: String): PlayerE
         teamRank = team.rank,
         totalGoal = totalGoal,
         leagueName = leagueName,
-        leagueCountry = leagueCountry
+        leagueCountry = leagueCountry,
+        leagueRank = 0,
+        totalMatches = 0,
     )
 }
 
@@ -25,7 +28,9 @@ fun PlayerEntity.toDomain(): Player {
         teamRank = teamRank,
         totalGoal = totalGoal,
         leagueName = leagueName,
-        leagueCountry = leagueCountry
+        leagueCountry = leagueCountry,
+        leagueRank = leagueRank,
+        totalMatches = totalMatches,
     )
 }
 

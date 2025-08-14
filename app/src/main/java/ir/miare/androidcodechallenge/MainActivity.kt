@@ -16,6 +16,7 @@ import ir.miare.androidcodechallenge.repository.PlayerRepositoryImpl
 import ir.miare.androidcodechallenge.ui.followed.FollowedPlayersScreen
 import ir.miare.androidcodechallenge.ui.players.PlayersScreen
 import ir.miare.androidcodechallenge.usecase.FollowPlayerUseCase
+import ir.miare.androidcodechallenge.usecase.GetAllLeaguesWithPlayersUseCase
 import ir.miare.androidcodechallenge.usecase.GetFollowedPlayersUseCase
 import ir.miare.androidcodechallenge.usecase.GetPlayersPagerUseCase
 import ir.miare.androidcodechallenge.viewmodel.PlayersViewModel
@@ -71,13 +72,15 @@ class MainActivity : AppCompatActivity() {
         val getPlayersPagerUseCase = GetPlayersPagerUseCase(repo)
         val followPlayerUseCase = FollowPlayerUseCase(repo)
         val getFollowedPlayersUseCase = GetFollowedPlayersUseCase(repo)
+        val getAllLeaguesWithPlayersUseCase = GetAllLeaguesWithPlayersUseCase(repo)
 
         val viewModel = ViewModelProvider(
             this,
             PlayersViewModelFactory(
-                getPlayersPagerUseCase,
-                followPlayerUseCase,
-                getFollowedPlayersUseCase
+                getPlayersPagerUseCase = getPlayersPagerUseCase,
+                followPlayerUseCase = followPlayerUseCase,
+                getFollowedPlayersUseCase = getFollowedPlayersUseCase,
+                getAllLeaguesWithPlayers = getAllLeaguesWithPlayersUseCase
             )
         )[PlayersViewModel::class.java]
 

@@ -32,4 +32,7 @@ interface PlayerDao {
 
     @Query("SELECT p.* FROM players p INNER JOIN followed_players f ON p.id = f.playerId")
     fun getFollowedPlayers(): Flow<List<PlayerEntity>>
+
+    @Query("SELECT * FROM players")
+    fun getAllPlayers(): Flow<List<PlayerEntity>>
 }

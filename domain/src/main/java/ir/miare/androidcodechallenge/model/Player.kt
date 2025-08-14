@@ -7,5 +7,7 @@ data class Player(
     val teamRank: Int,
     val totalGoal: Int,
     val leagueName: String,
-    val leagueCountry: String
+    val leagueCountry: String,
+    val leagueRank : Int = 0,
+    val totalMatches : Int = 0
 )
