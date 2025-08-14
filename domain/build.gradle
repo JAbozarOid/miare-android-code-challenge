@@ -11,4 +11,10 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3"
     implementation "androidx.paging:paging-common:3.2.0"
     implementation "javax.inject:javax.inject:1"
+    testImplementation libs.junit4
+    testImplementation libs.mockk.agent
+    testImplementation libs.kotlinx.coroutines.test
+    testImplementation "androidx.paging:paging-common:3.2.0"
+    testImplementation "io.mockk:mockk:1.13.5"
+
 }
