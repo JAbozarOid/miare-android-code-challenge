@@ -2,7 +2,13 @@
 
 ## Screenshots
 
-![Screen 1](screenshots/1.png) ![Screen 2](screenshots/2.png) ![Screen 3](screenshots/3.png) ![Screen 3](screenshots/4.png) ![Screen 3](screenshots/5.png)
+<p float="left">
+  <img src="screenshots/1.png" width="200" alt="Player List Screen" />
+  <img src="screenshots/2.png" width="200" alt="Player Top three" />
+  <img src="screenshots/3.png" width="200" alt="Team and League" />
+  <img src="screenshots/4.png" width="200" alt="Followed Players Screen" />
+  <img src="screenshots/5.png" width="200" alt="Followed Players Screen empty" />
+</p>
 
 ---
 
