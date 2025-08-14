@@ -4,15 +4,15 @@
 
 <div style="overflow-x: auto; white-space: nowrap;">
 
-  <img src="screenshots/1.png" width="200" style="display: inline-block; margin-right: 10px;" alt="Screen 1" />
-  <img src="screenshots/2.png" width="200" style="display: inline-block; margin-right: 10px;" alt="Screen 2" />
-  <img src="screenshots/3.png" width="200" style="display: inline-block; margin-right: 10px;" alt="Screen 3" />
+  <img src="screenshots/1.png" width="200" height="600" style="display: inline-block; margin-right: 10px;" alt="Screen 1" />
+  <img src="screenshots/2.png" width="200" height="600" style="display: inline-block; margin-right: 10px;" alt="Screen 2" />
+  <img src="screenshots/3.png" width="200" height="600" style="display: inline-block; margin-right: 10px;" alt="Screen 3" />
 
 </div>
 
 ---
 
-#### 📝 Task Description
+#### 📝 Task Descriptionk
 
 **Core Requirements:**
 
