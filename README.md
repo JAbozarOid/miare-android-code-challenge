@@ -2,13 +2,15 @@
 
 ## Screenshots
 
-<p float="left">
-  <img src="screenshots/1.png" width="200" alt="Player List Screen" />
-  <img src="screenshots/2.png" width="200" alt="Player Top three" />
-  <img src="screenshots/3.png" width="200" alt="Team and League" />
-  <img src="screenshots/4.png" width="200" alt="Followed Players Screen" />
-  <img src="screenshots/5.png" width="200" alt="Followed Players Screen empty" />
-</p>
+<div style="overflow-x: auto; white-space: nowrap;">
+
+  <img src="screenshots/1.png" width="200" style="display: inline-block; margin-right: 10px;" alt="Screen 1" />
+  <img src="screenshots/2.png" width="200" style="display: inline-block; margin-right: 10px;" alt="Screen 2" />
+  <img src="screenshots/3.png" width="200" style="display: inline-block; margin-right: 10px;" alt="Screen 3" />
+  <img src="screenshots/4.png" width="200" style="display: inline-block; margin-right: 10px;" alt="Screen 4" />
+  <img src="screenshots/5.png" width="200" style="display: inline-block; margin-right: 10px;" alt="Screen 5" />
+
+</div>
 
 ---
 
