@@ -2,11 +2,7 @@
 
 ## Screenshots
 
-![Screen 1](screenshots/1.png)
-![Screen 2](screenshots/2.png)
-![Screen 3](screenshots/3.png)
-![Screen 3](screenshots/4.png)
-![Screen 3](screenshots/5.png)
+![Screen 1](screenshots/1.png) ![Screen 2](screenshots/2.png) ![Screen 3](screenshots/3.png) ![Screen 3](screenshots/4.png) ![Screen 3](screenshots/5.png)
 
 ---
 
